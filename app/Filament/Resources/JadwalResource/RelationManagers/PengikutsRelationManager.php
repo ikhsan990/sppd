@@ -6,10 +6,13 @@ use Closure;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Jadwal;
+use App\Models\Pegawai;
+use Filament\Forms\Get;
 use App\Models\Pengikut;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\Action;
+use App\Rules\PengikutJadwalOverlap;
 use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
@@ -27,10 +30,31 @@ class PengikutsRelationManager extends RelationManager
             Select::make('pegawai_id')
                 ->label('Pegawai')
                 ->relationship('pegawai', 'nama')
+                ->options(Pegawai::all()->pluck('nama', 'id'))
                 ->searchable()
                 ->required()
-                ->label('Pegawai')
+                ->unique(ignoreRecord: true, modifyRuleUsing: function (Forms\Components\Select $component, \Illuminate\Validation\Rules\Unique $rule) {
+                        return $rule->where('jadwal_id', $component->getLivewire()->ownerRecord->id);
+                    }) // Modifikasi unique agar hanya unik di jadwal_id ini
+                ->rules([
+                        function (Get $get, string $operation, ?\App\Models\Pengikut $record) {
+                            $currentJadwal = $this->ownerRecord; // Jadwal induk (JadwalResource)
 
+                            // Pastikan jadwal induk memiliki tanggal
+                            if (!$currentJadwal->tanggal_mulai || !$currentJadwal->tanggal_selesai) {
+                                // Ini adalah skenario error yang harusnya ditangani di JadwalResource
+                                // atau Anda bisa mengembalikan rule yang selalu lolos atau gagal
+                                return \Illuminate\Validation\Rule::make(function ($attribute, $value, $fail) use ($currentJadwal) {
+                                    $fail("Tanggal jadwal induk belum lengkap. Tidak bisa validasi pengikut.");
+                                });
+                            }
+
+                            return (new PengikutJadwalOverlap())
+                                ->forJadwalDates($currentJadwal->tanggal_mulai, $currentJadwal->tanggal_selesai)
+                                ->inJadwal($currentJadwal->id)
+                                ->ignorePengikut($record?->id);
+                        },
+                    ]),
             ]);
     }
 

@@ -6,15 +6,19 @@ use Closure;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Jadwal;
+use App\Models\Pegawai;
+use Filament\Forms\Get;
+use App\Models\Kegiatan;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
+use App\Rules\PegawaiJadwalOverlap;
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\ActionGroup;
 use App\Filament\Resources\JadwalResource\Pages;
 use App\Filament\Resources\JadwalResource\RelationManagers;
-use Filament\Tables\Actions\Action;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Filament\Tables\Actions\ActionGroup;
 
 class JadwalResource extends Resource
 {
@@ -38,16 +42,26 @@ class JadwalResource extends Resource
                             ->required()
                             ->reactive(),
                         Forms\Components\DatePicker::make('tanggal_selesai')
-                            ->required(),
+                            ->required()
+                            ->afterOrEqual('tanggal_mulai'),
                         Select::make('pegawai_id')
                             ->label('Penanggung Jawab')
                             ->relationship('pegawai', 'nama')
                             ->searchable()
+                            ->options(Pegawai::all()->pluck('nama', 'id'))
                             ->preload()
                             ->required()
                             ->reactive()
                             ->native(false) // Untuk tampilan yang lebih modern
                             ->placeholder('Cari Pegawai...')
+                            ->rules([
+                        // Memanggil custom rule kita
+                        function (Get $get, string $operation, ?Jadwal $record) {
+                            return (new PegawaiJadwalOverlap())
+                                ->forDates($get('tanggal_mulai'), $get('tanggal_selesai'))
+                                ->ignore($record?->id); // Lewatkan ID record jika sedang update
+                        },
+                    ])
                             ,
 
 
@@ -59,6 +73,7 @@ class JadwalResource extends Resource
                         Select::make('kegiatan_id')
                             ->label('Kegiatan')
                             ->relationship('kegiatan', 'nama_kegiatan')
+                            ->options(Kegiatan::all()->pluck('nama_kegiatan', 'id'))
                             ->searchable()
                             ->preload()
                             ->required()
