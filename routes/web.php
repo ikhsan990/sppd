@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SPTController;
 use App\Http\Controllers\SppdController;
 use App\Http\Controllers\KwitansiController;
+use App\Http\Controllers\KegiatanController;
+
 
 
 Route::get('/', function () {
@@ -22,3 +24,4 @@ Route::get('/kwitansi/{jadwal}', [KwitansiController::class, 'cetakPdf'])->name(
 
 
 Route::get('/sppd/pengikut-asn/{jadwal}', [SppdController::class, 'cetakPengikutAsn'])->name('sppd.pengikut-asn.cetak');
+

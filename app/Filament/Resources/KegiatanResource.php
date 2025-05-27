@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 
+
+
+
 class KegiatanResource extends Resource
 {
     protected static ?string $model = Kegiatan::class;
@@ -75,6 +78,12 @@ class KegiatanResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                // Tambahkan tombol import di sini sebagai action custom
+               //Tables\Actions\Action::make('import')
+                // ->label('Import Data')
+                    //->icon('arrow-up-tray') //heroicon-o-cloud-upload
+                //    ->url(static::getUrl('import'))
+                //    ->openUrlInNewTab(false),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -96,6 +105,9 @@ class KegiatanResource extends Resource
             'index' => Pages\ListKegiatans::route('/'),
             'create' => Pages\CreateKegiatan::route('/create'),
             'edit' => Pages\EditKegiatan::route('/{record}/edit'),
+            //'import' => KegiatanImport::route('/import'),
+            //'import' => Pages\KegiatanImport::route('/import'),
+
         ];
     }
 }

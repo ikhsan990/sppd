@@ -29,7 +29,7 @@ class PegawaiResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nip')
                     ->required()
-                    ->unique(ignoreRecord: true)
+                    //->unique(ignoreRecord: false)
                     ->maxLength(255),
                 Forms\Components\TextInput::make('pangkat')
                     ->required()
