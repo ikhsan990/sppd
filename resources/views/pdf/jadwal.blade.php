@@ -17,9 +17,18 @@
         .title {
             text-align: center;
             font-weight: bold;
+            font-size: 16px;
             margin-top: 10px;
+            margin-bottom: 0px;
+        }
+        .sub.title {
+            text-align: center;
+            font-weight: normal;
+            font-size: 14px;
+            margin-top: -20px;
             margin-bottom: 10px;
         }
+
 
         .content {
             width: 100%;
@@ -62,35 +71,85 @@
             text-align: left;
 
         }
+#header-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-bottom: 2px solid black;
+      margin: 0 auto;
+      max-width: 1200px;
+      font-family: "Times New Roman", Times, serif;
+    }
 
+    #header-table td {
+      vertical-align: middle;
+      padding: 5px 10px;
+    }
+
+    /* Kolom logo kiri dan kanan */
+    #header-table .logo-cell {
+      width: 15%;
+      text-align: center;
+    }
+
+    #header-table .logo-cell img {
+      max-height: 80px;
+      height: auto;
+      width: auto;
+      display: inline-block;
+    }
+
+    /* Kolom teks tengah */
+    #header-table .text-cell {
+      width: 70%;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    #header-table .text-cell .line1 {
+      font-size: 16px;
+    }
+
+    #header-table .text-cell .line2 {
+      font-size: 18px;
+    }
+
+    #header-table .text-cell .line3 {
+      font-size: 20px;
+    }
+
+    #header-table .text-cell .address {
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 4px;
+      font-weight: normal;
+    }
 
     </style>
 </head>
 <body>
 
-    <header class="header-container" role="banner" aria-label="Header Puskesmas Pulau Mansinam">
-            <table width="100%" cellspacing="0" cellpadding="5" style="border-bottom: 2px solid black;">
-            <tr>
-                <td width="15%" valign="middle">
-                <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 80px;">
-                </td>
-                <td width="70%" valign="middle" align-items="center" style="line-height: 1.2;">
-                    <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
-                    <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
-                    <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
-                    <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
-                </td>
-                <td width="15%" valign="middle">
-                    <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 80px;">
-                </td>
-            </tr>
-        </table>
-    </header>
+    <table id="header-table" role="banner" aria-label="Header Puskesmas Pulau Mansinam">
+    <tr>
+      <td class="logo-cell">
+        <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" />
+      </td>
+      <td class="text-cell">
+        <div class="line1">PEMERINTAH KABUPATEN MANOKWARI</div>
+        <div class="line2">DINAS KESEHATAN</div>
+        <div class="line3">UPTD PUSKESMAS PULAU MANSINAM</div>
+        <div class="address">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
+      </td>
+      <td class="logo-cell">
+        <img src="logo_pkm.png" alt="Logo Puskesmas" />
+      </td>
+    </tr>
+  </table>
 
     <!-- Judul -->
     <div class="title">
-        SURAT PERINTAH PERJALANAN DINAS<br>
-        Nomor : {{ $jadwal->nomor_spt }}
+        SURAT PERINTAH PERJALANAN DINAS</div><br>
+    <div class="sub title">    Nomor : 094/{{ $jadwal->nomor_spt }}/ KWIT/BOK/I/2025
     </div>
 
     <!-- Isi Surat -->
@@ -216,15 +275,30 @@
         1. Supaya melapor di tempat tujuan.<br>
         2. Membuat laporan tertulis tentang hasil pelaksanaan tugas.
     </div>
-
+<br><br>
     <!-- Tanda Tangan -->
-    <div class="signature">
+    {{-- <div class="signature">
         Dikeluarkan di: Pulau Mansinam<br>
         Pada Tanggal: {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->format('d F Y') }}<br><br><br>
         <strong>Kepala Puskesmas Pulau Mansinam</strong><br><br><br>
         <strong><u>Nama Pejabat</u></strong><br>
         NIP. 1234567890
+    </div> --}}
+
+    <div style="width: 50%; float: left; text-align: center;">
+
+
     </div>
+
+    <div style="width: 50%; float: right; text-align: center;">
+        Dikeluarkan di: Pulau Mansinam<br>
+        Pada Tanggal: {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }}<br>
+        <p>Mengetahui :<br>Kepala Puskesmas Pulau Mansinam</p>
+        <br><br><br>
+        <p><strong>OKTOVIANUS SORBU, AMK</strong><br>NIP. 19801030 200012 1 005</p>
+    </div>
+
+
 
 </body>
 </html>

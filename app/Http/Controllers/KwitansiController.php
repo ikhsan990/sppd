@@ -17,19 +17,22 @@ class KwitansiController extends Controller
      */
 public function cetakPdf($id)
 {
-    $jadwal = Jadwal::with(['pegawai', 'pengikut.pegawai'])->findOrFail($id);
+    $jadwal = Jadwal::with(['pegawai', 'pengikut.pegawai', 'kegiatan']  )->findOrFail($id);
 
-    $totalTransport = $jadwal->pegawai->transport_lokal;
+    $jmlHari = $jadwal->kegiatan->jml_hari ?? 1;
+
+    $totalTransport = $jadwal->pegawai->transport_lokal * $jmlHari;
     foreach ($jadwal->pengikut as $pengikut) {
-        $totalTransport += $pengikut->pegawai->transport_lokal;
+        $totalTransport += $pengikut->pegawai->transport_lokal * $jmlHari;
     }
 
-     $terbilang = ucfirst(terbilang($totalTransport)) . " Rupiah";
+    $terbilang = ucfirst(terbilang($totalTransport)) . " Rupiah";
 
     $pdf = Pdf::loadView('pdf.kwitansi', [
         'jadwal' => $jadwal,
         'totalTransport' => $totalTransport,
         'terbilang' => $terbilang,
+        'jmlHari' => $jmlHari,
     ]);
 
     return $pdf->stream('kwitansi.pdf');

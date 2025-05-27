@@ -21,7 +21,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 
 class PengikutsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'pengikuts';
+    protected static string $relationship = 'pengikut';
 
     public function form(Form $form): Form
     {

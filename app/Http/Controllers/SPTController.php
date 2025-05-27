@@ -12,7 +12,7 @@ class SPTController extends Controller
     {
         $jadwal = Jadwal::with(['pegawai', 'kegiatan', 'pengikut.pegawai'])->findOrFail($id);
 
-        $pdf = Pdf::loadView('pdf.spt', compact('jadwal'))->setPaper('A4', 'portrait');
+        $pdf = Pdf::loadView('pdf.spt', compact('jadwal'))->setPaper('F4', 'portrait');
 
         return $pdf->stream('SPT-'.$jadwal->nomor_spt.'.pdf');
     }

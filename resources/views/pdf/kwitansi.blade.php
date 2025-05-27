@@ -62,8 +62,8 @@
                 <td>1</td>
                 <td>{{ $jadwal->pegawai->nama }}<br>{{ $jadwal->pegawai->nip }}</td>
                 <td>{{ $jadwal->pegawai->pangkat }}</td>
-                <td>1 OH x {{ number_format($jadwal->pegawai->transport_lokal, 0, ',', '.') }}</td>
-                <td>Rp {{ number_format($jadwal->pegawai->transport_lokal, 0, ',', '.') }}</td>
+                <td>{{ $jmlHari }} OH x {{ number_format($jadwal->pegawai->transport_lokal, 0, ',', '.') }}</td>
+                <td>Rp {{ number_format($jadwal->pegawai->transport_lokal * $jmlHari, 0, ',', '.') }}</td>
                 <td></td>
             </tr>
 
@@ -73,8 +73,8 @@
                 <td>{{ $index + 2 }}</td>
                 <td>{{ $pengikut->pegawai->nama }}<br>{{ $pengikut->pegawai->nip }}</td>
                 <td>{{ $pengikut->pegawai->pangkat }}</td>
-                <td>1 OH x {{ number_format($pengikut->pegawai->transport_lokal, 0, ',', '.') }}</td>
-                <td>Rp {{ number_format($pengikut->pegawai->transport_lokal, 0, ',', '.') }}</td>
+                <td>{{ $jmlHari }} OH x {{ number_format($pengikut->pegawai->transport_lokal , 0, ',', '.') }}</td>
+                <td>Rp {{ number_format($pengikut->pegawai->transport_lokal * $jmlHari, 0, ',', '.') }}</td>
                 <td></td>
             </tr>
             @endforeach

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('menu')->nullable();
             $table->string('alias')->nullable();
             $table->integer('jml_petugas')->default(1);
+            $table->integer('jml_hari')->default(1);
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });
