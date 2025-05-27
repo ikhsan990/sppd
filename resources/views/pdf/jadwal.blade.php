@@ -7,19 +7,7 @@
         body {
             font-family: "Times New Roman", Times, serif;
             font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .header {
-            text-align: center;
-            border-bottom: 2px solid black;
-            padding-bottom: 5px;
-        }
-
-        .header img {
-            float: left;
-            height: 60px;
-            margin-right: 10px;
+            line-height: 1.4;
         }
 
         .clear {
@@ -74,19 +62,30 @@
             text-align: left;
 
         }
+
+
     </style>
 </head>
 <body>
 
-    <!-- Kop Surat -->
-    <div class="header">
-        <img src="{{ public_path('logo-kabupaten.png') }}" alt="Logo">
-        <strong>PEMERINTAH KABUPATEN MANOKWARI</strong><br>
-        DINAS KESEHATAN<br>
-        <strong>UPTD PUSKESMAS PULAU MANSINAM</strong><br>
-        Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat
-    </div>
-    <div class="clear"></div>
+    <header class="header-container" role="banner" aria-label="Header Puskesmas Pulau Mansinam">
+            <table width="100%" cellspacing="0" cellpadding="5" style="border-bottom: 2px solid black;">
+            <tr>
+                <td width="15%" valign="middle">
+                <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 80px;">
+                </td>
+                <td width="70%" valign="middle" align-items="center" style="line-height: 1.2;">
+                    <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
+                    <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
+                    <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
+                    <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
+                </td>
+                <td width="15%" valign="middle">
+                    <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 80px;">
+                </td>
+            </tr>
+        </table>
+    </header>
 
     <!-- Judul -->
     <div class="title">
@@ -158,12 +157,12 @@
         <tr>
             <td>11.</td>
             <td>Tanggal Harus Berangkat</td>
-            <td>: {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->format('d F Y') }}</td>
+            <td>: {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td>12.</td>
             <td>Tanggal Harus Kembali</td>
-            <td>: {{ \Carbon\Carbon::parse($jadwal->tanggal_selesai)->format('d F Y') }}</td>
+            <td>: {{ \Carbon\Carbon::parse($jadwal->tanggal_selesai)->locale('id')->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
             <td>13.</td>
@@ -192,7 +191,7 @@
             </tr>
         </thead>
         <tbody>
-                    @php  $nonAsn = $jadwal->pengikuts->filter(fn($p) => $p->pegawai->status !== 'asn')->values(); @endphp
+                    @php  $nonAsn = $jadwal->pengikut->filter(fn($p) => $p->pegawai->status !== 'asn')->values(); @endphp
 
                     @forelse ($nonAsn as $i => $pengikut)
                         <tr>

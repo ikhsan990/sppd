@@ -25,7 +25,7 @@ use HasFactory;
         return $this->belongsTo(Pegawai::class);
     }
 
-    public function pengikuts(): HasMany
+    public function pengikut(): HasMany
     {
         return $this->hasMany(Pengikut::class);
     }

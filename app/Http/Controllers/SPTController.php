@@ -10,7 +10,7 @@ class SPTController extends Controller
 {
     public function cetak($id)
     {
-        $jadwal = Jadwal::with(['pegawai', 'kegiatan', 'pengikuts.pegawai'])->findOrFail($id);
+        $jadwal = Jadwal::with(['pegawai', 'kegiatan', 'pengikut.pegawai'])->findOrFail($id);
 
         $pdf = Pdf::loadView('pdf.spt', compact('jadwal'))->setPaper('A4', 'portrait');
 

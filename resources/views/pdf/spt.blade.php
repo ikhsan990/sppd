@@ -20,10 +20,10 @@
 <p><strong>Kegiatan:</strong> {{ $jadwal->kegiatan->nama_kegiatan }}</p>
 <p><strong>Keterangan:</strong> {{ $jadwal->kegiatan->keterangan }}</p>
 
-@if ($jadwal->pengikuts->count())
+@if ($jadwal->pengikut->count())
     <h4>Pengikut:</h4>
     <ul>
-        @foreach ($jadwal->pengikuts as $pengikut)
+        @foreach ($jadwal->pengikut as $pengikut)
             <li>{{ $pengikut->pegawai->nama }}</li>
         @endforeach
     </ul>

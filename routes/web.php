@@ -5,7 +5,8 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SPTController;
 use App\Http\Controllers\SppdController;
-use App\Http\Controllers\CetakKwitansiController;
+use App\Http\Controllers\KwitansiController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,7 @@ Route::get('/jadwal/{jadwal}/cetak', function (Jadwal $jadwal) {
 
 Route::get('/spt/cetak/{id}', [SPTController::class, 'cetak'])->name('spt.cetak');
 
-Route::get('/kwitansi/{jadwal}', [CetakKwitansiController::class, 'cetak'])->name('kwitansi.cetak');
+Route::get('/kwitansi/{jadwal}', [KwitansiController::class, 'cetakPdf'])->name('kwitansi.cetak');
+
 
 Route::get('/sppd/pengikut-asn/{jadwal}', [SppdController::class, 'cetakPengikutAsn'])->name('sppd.pengikut-asn.cetak');

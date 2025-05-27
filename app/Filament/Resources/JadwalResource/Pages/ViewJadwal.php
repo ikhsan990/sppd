@@ -14,9 +14,9 @@ class ViewJadwal extends ViewRecord
     {
         return [
             Action::make('Cetak')
-                ->label('Cetak PDF')
+                ->label('Cetak Kwitansi')
                 ->icon('heroicon-o-printer')
-                ->url(fn () => route('jadwal.cetak', $this->record))
+                 ->url(fn (): string => route('cetak.kwitansi', $this->getRecord()))
                 ->openUrlInNewTab(),
         ];
     }

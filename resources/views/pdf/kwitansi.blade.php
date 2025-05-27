@@ -1,87 +1,106 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="ID">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Kwitansi</title>
     <style>
-        body { font-family: "Times New Roman", serif; font-size: 12px; }
-        table { width: 100%; border-collapse: collapse; }
-        .center { text-align: center; }
-        .bordered th, .bordered td { border: 1px solid black; padding: 5px; }
-        .signature-section { margin-top: 30px; }
+        body { font-family: "Times New Roman", Times, serif; font-size: 12px; line-height: 1.4; }
+        table { width: 100%; }
+        th, td { border: 0px solid black; padding: 5px; text-align: center; }
+        .header, .footer { text-align: center; line-height: 1.4; }
+        .bold { font-weight: bold; }
     </style>
 </head>
 <body>
-
-<div class="center">
-    <img src="{{ public_path('logo-kabupaten.png') }}" height="60">
-    <h4>PEMERINTAH KABUPATEN MANOKWARI<br>DINAS KESEHATAN<br>UPTD PUSKESMAS PULAU MANSINAM</h4>
-    <small>Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</small>
-</div>
-
-<h3 class="center">KWITANSI</h3>
-<p><strong>Nomor:</strong> {{ $jadwal->nomor_spt }}/KWIT/BOK/I/{{ now()->year }}</p>
-
-<p><strong>Sudah terima dari:</strong> Pengguna Anggaran Dinas Kesehatan Kabupaten Manokwari...</p>
-<p><strong>Uang sejumlah:</strong> Rp {{ number_format($pengikuts->count() * 150000, 0, ',', '.') }}</p>
-<p><strong>Untuk pembayaran:</strong> Biaya Perjalanan Dinas Petugas dalam Rangka {{ $jadwal->kegiatan->nama_kegiatan }} An. {{ $jadwal->pegawai->nama }} dkk. Pada tanggal {{ $jadwal->tanggal_mulai }} di {{ $jadwal->tujuan }} (SPT & SPPD Terlampir)</p>
-
-<p><em><strong>Terbilang:</strong> {{ ucwords(terbilang($pengikuts->count() * 150000)) }} Rupiah</em></p>
-
-<h4 class="center">RINCIAN BIAYA PERJALANAN DINAS</h4>
-<table class="bordered">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama / NIP</th>
-            <th>Gol/Ruang</th>
-            <th>Uraian</th>
-            <th>Jumlah diterima</th>
-            <th>Tanda Tangan</th>
-        </tr>
-    </thead>
-    <tbody>
-        @php $total = 0; @endphp
-        @foreach ($pengikuts as $i => $pengikut)
-            @php
-                $pegawai = $pengikut->pegawai;
-                $jumlah = 150000; // Contoh nominal
-                $total += $jumlah;
-            @endphp
+    <div class="header">
+        <table width="100%" cellspacing="0" cellpadding="5" style="border-bottom: 2px solid black;">
             <tr>
-                <td>{{ $i + 1 }}</td>
-                <td>{{ $pegawai->nama }}<br>{{ $pegawai->nip }}</td>
-                <td>{{ $pegawai->golongan }}</td>
-                <td>1 OH × 150000</td>
-                <td>Rp {{ number_format($jumlah, 0, ',', '.') }}</td>
+                <td width="15%" valign="middle">
+                <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 80px;">
+                </td>
+                <td width="70%" valign="middle" style="line-height: 1.2;">
+                    <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
+                    <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
+                    <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
+                    <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
+                </td>
+                <td width="15%" valign="middle">
+                    <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 80px;">
+                </td>
+            </tr>
+        </table>
+
+
+        <h2>KWITANSI</h2>
+        <p>Nomor : 900 / 035 / KWIT/BOK/I/2025</p>
+    </div>
+
+    <p>Sudah terima dari : Pengguna Anggaran Dinas Kesehatan Kabupaten Manokwari Atas Kegiatan Bantuan Operasional Kesehatan (BOK) Puskesmas Pulau Mansinam Tahun 2025</p>
+    <p>Uang sejumlah : <strong>Rp {{ number_format($totalTransport, 0, ',', '.') }}</strong></p>
+    <p>Untuk pembayaran : Biaya Perjalanan Dinas Petugas Dalam Rangka {{ $jadwal->kegiatan->nama_kegiatan }} An. {{ $jadwal->pegawai->nama }} dkk. pada tanggal {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} di Salobar (SPT & SPPD terlampir)</p>
+
+    <hr>
+
+    <p><em>Terbilang : {{ $terbilang }} </em></p>
+
+    <h4>RINCIAN BIAYA PERJALANAN DINAS</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama / NIP</th>
+                <th>Gol/Ruang</th>
+                <th>Uraian</th>
+                <th>Jumlah diterima</th>
+                <th>Tanda Tangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{-- Pegawai Penanggung Jawab --}}
+            <tr>
+                <td>1</td>
+                <td>{{ $jadwal->pegawai->nama }}<br>{{ $jadwal->pegawai->nip }}</td>
+                <td>{{ $jadwal->pegawai->pangkat }}</td>
+                <td>1 OH x {{ number_format($jadwal->pegawai->transport_lokal, 0, ',', '.') }}</td>
+                <td>Rp {{ number_format($jadwal->pegawai->transport_lokal, 0, ',', '.') }}</td>
                 <td></td>
             </tr>
-        @endforeach
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4" class="center"><strong>Jumlah</strong></td>
-            <td><strong>Rp {{ number_format($total, 0, ',', '.') }}</strong></td>
-            <td></td>
-        </tr>
-    </tfoot>
-</table>
 
-<div class="signature-section">
-    <div style="float: left; width: 50%; text-align: center;">
-        Mengetahui:<br>
-        Kepala Puskesmas Pulau Mansinam<br><br><br>
-        <strong><u>OKTOVIANUS SORBU, AMK</u></strong><br>
-        NIP. 19801030 200012 1 005
+            {{-- Pengikut --}}
+            @foreach($jadwal->pengikut as $index => $pengikut)
+            <tr>
+                <td>{{ $index + 2 }}</td>
+                <td>{{ $pengikut->pegawai->nama }}<br>{{ $pengikut->pegawai->nip }}</td>
+                <td>{{ $pengikut->pegawai->pangkat }}</td>
+                <td>1 OH x {{ number_format($pengikut->pegawai->transport_lokal, 0, ',', '.') }}</td>
+                <td>Rp {{ number_format($pengikut->pegawai->transport_lokal, 0, ',', '.') }}</td>
+                <td></td>
+            </tr>
+            @endforeach
+
+            {{-- Total --}}
+            <tr>
+                <td colspan="4" class="bold">Jumlah</td>
+                <td class="bold">Rp {{ number_format($totalTransport, 0, ',', '.') }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <div style="width: 50%; float: left; text-align: center;">
+        <p>Mengetahui :<br>Kepala Puskesmas Pulau Mansinam</p>
+        <br><br><br>
+        <p><strong>OKTOVIANUS SORBU, AMK</strong><br>NIP. 19801030 200012 1 005</p>
     </div>
-    <div style="float: right; width: 50%; text-align: center;">
-        Manokwari,<br>
-        Lunas dibayar<br>
-        Bendahara BOK<br><br><br>
-        <strong><u>MUH. IKHSAN, AMK</u></strong><br>
-        NIP. 19900301 202106 1 001
+
+    <div style="width: 50%; float: right; text-align: center;">
+        <p>Manokwari,<br>Lunas dibayar,<br>Bendahara BOK</p>
+        <br><br><br>
+        <p><strong>MUH. IKHSAN, AMK</strong><br>NIP. 19900301 202106 1 001</p>
     </div>
-</div>
 
 </body>
 </html>
