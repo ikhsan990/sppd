@@ -13,11 +13,11 @@ class ViewJadwal extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('Cetak')
-                ->label('Cetak Kwitansi')
-                ->icon('heroicon-o-printer')
-                 ->url(fn (): string => route('cetak.kwitansi', $this->getRecord()))
-                ->openUrlInNewTab(),
+            // Action::make('Cetak')
+            //     ->label('Cetak Kwitansi')
+            //     ->icon('heroicon-o-printer')
+            //      ->url(fn (): string => route('cetak.kwitansi', $this->getRecord()))
+            //     ->openUrlInNewTab(),
         ];
     }
 }

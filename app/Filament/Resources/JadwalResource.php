@@ -129,9 +129,11 @@ class JadwalResource extends Resource
                     ->icon('heroicon-o-printer')
                     ->color('success'),
                 Action::make('cetak_kwitansi')
-                ->label('Cetak Kwitansi')
-                ->url(fn ($record) => route('kwitansi.cetak', $record))
-                ->openUrlInNewTab(),
+                    ->label('Cetak Kwitansi')
+                    ->icon('heroicon-o-printer')
+                    ->color('danger')
+                    ->url(fn ($record) => route('kwitansi.cetak', $record))
+                    ->openUrlInNewTab(),
                 ])
                     ->button()
                     ->label('Actions'),

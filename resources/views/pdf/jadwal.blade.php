@@ -312,7 +312,7 @@
                 Berangkat dari <br> Ke <br> Pada tanggal <br> NO. SPPD
             </td>
             <td style="border: 1px solid black; border-left: none; vertical-align: top; padding: 4px 8px;">
-                : Puskesmas Pulau Mansinam <br> : Salobar <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} <br> : 094/{{ $jadwal->nomor_spt }}/SPPD/BOK/___/2025
+                : Puskesmas Pulau Mansinam <br> : {{ $jadwal->tujuan }} <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} <br> : 094/{{ $jadwal->nomor_spt }}/SPPD/BOK/___/2025
             </td>
         </tr>
         <tr>
