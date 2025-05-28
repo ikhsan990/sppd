@@ -14,7 +14,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/jadwal/{jadwal}/cetak', function (Jadwal $jadwal) {
-    $pdf = Pdf::loadView('pdf.jadwal', compact('jadwal'));
+    $customPaper = [0, 0, 595.35, 935.55];
+    $pdf = Pdf::loadView('pdf.jadwal', compact('jadwal'))->setPaper($customPaper, 'portrait');
     return $pdf->stream('SPPD-' . $jadwal->kegiatan->alias .' '. \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') . '.pdf');
 })->name('jadwal.cetak');
 

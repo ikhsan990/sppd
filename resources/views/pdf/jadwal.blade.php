@@ -113,7 +113,7 @@
 
   <!-- HALAMAN 1 -->
 
-  <div class="page" id="page1">
+<div class="page" id="page1">
 
 <div>
     <table style="width: 100%; text-align: center; border-collapse: collapse; border: none; border-bottom: 2px solid #000;">
@@ -132,20 +132,12 @@
         </td>
     </tr>
     </table>
-
-        {{-- <img src="{{ asset('logo_pemda.png') }}" alt="Logo Kiri" class="logo-left" />
-      <div style="text-align: center; font-weight: bold; margin-bottom: 1px; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
-      <div style="text-align: center; font-weight: bold; margin-bottom: 1px; font-size: 16px;">DINAS KESEHATAN</div>
-      <div style="text-align: center; font-weight: bold; margin-bottom: 1px; font-size: 18px;">UPTD PUSKESMAS PULAU MANSINAM</div>
-      <div style="margin-top: 5px; font-size: 13px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
-        <img src="{{ asset('logo_pkm.png') }}" alt="Logo Kanan" class="logo-right" />
-      <hr style="border: 1px solid #000; margin: 0px 0;"> --}}
 </div>
 
 
-    <h2 style="text-align: center; font-weight: bold; margin-bottom: 5px;">SURAT PERINTAH PERJALANAN DINAS</h2>
-    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 094/ {{ $jadwal->nomor_spt }} /SPPD/___/2025</div>
-
+    <h2 style="text-align: center; font-weight: bold; margin-bottom: 5px; margin-top: 30px;">SURAT PERINTAH PERJALANAN DINAS</h2>
+    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 094/ {{ $jadwal->nomor_spt }} /SPPD/BOK/___/2025</div>
+    <br>
     <table>
       <tbody>
         <tr>
@@ -244,7 +236,7 @@
         <tr>
           <th style="width: 5%;">No</th>
           <th style="width: 45%;">Nama</th>
-          <th style="width: 25%;">Status Pegawai</th>
+          <th style="width: 25%;">Jabatan</th>
           <th style="width: 25%;">Keterangan</th>
         </tr>
       </thead>
@@ -255,8 +247,8 @@
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ $pengikut->pegawai->nama }}</td>
-                            <td>{{ $pengikut->pegawai->jabatan }}</td>
-                            <td><i>{{ $pengikut->pegawai->status }}</i></td>
+                            <td>{{ $pengikut->pegawai->Jabatan }}</td>
+                            <td>-</i></td>
                         </tr>
             @empty
                         <tr>
@@ -291,7 +283,7 @@
       <li>Supaya melapor di tempat tujuan.</li>
       <li>Membuat laporan tertulis tentang hasil pelaksanaan tugas.</li>
     </ol>
-
+    <br>
     <table style="border: none;">
       <tbody style="border: none;">
         <tr style="border: none;">
@@ -320,7 +312,7 @@
                 Berangkat dari <br> Ke <br> Pada tanggal <br> NO. SPPD
             </td>
             <td style="border: 1px solid black; border-left: none; vertical-align: top; padding: 4px 8px;">
-                : Puskesmas Pulau Mansinam <br> : Salobar <br> : 12 Mei 2025 <br> : 094/004/SPPD/___/2025
+                : Puskesmas Pulau Mansinam <br> : Salobar <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} <br> : 094/{{ $jadwal->nomor_spt }}/SPPD/BOK/___/2025
             </td>
         </tr>
         <tr>
@@ -336,13 +328,13 @@
                 Tiba di <br> Pada tanggal<br>  <br>
             </td>
             <td style="border: 1px solid black; border-left: none; vertical-align: top; padding: 4px 8px;">
-                : Salobar <br> : 12 Mei 2025 <br>  <br>
+                : {{ $jadwal->tujuan }} <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} <br>  <br>
             </td>
             <td style="border: 1px solid black; border-right: none; vertical-align: top; padding: 4px 8px;">
                 Berangkat dari <br> Pada tanggal <br>Ke  <br>
             </td>
             <td style="border: 1px solid black; border-left: none; vertical-align: top; padding: 4px 8px;">
-                : Salobar <br> : 12 Mei 2025 <br> : Puskesmas Pulau Mansinam <br>
+                : {{ $jadwal->tujuan }} <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_selesai)->locale('id')->translatedFormat('d F Y') }} <br> : Puskesmas Pulau Mansinam <br>
             </td>
         </tr>
         <tr>
@@ -375,12 +367,12 @@
         <tr>
             <td></td>
             <td colspan="2" style="border: 1px solid black; text-align: center; vertical-align: top; padding-top: 5px; padding-bottom: 8px;">
-                Kepala Kampung/Kelurahan/Posyandu <br><br><br><br>
+                Kepala Kampung/Kelurahan/Posyandu <br><br><br><br><br><br>
                 ______________________________<br>
                 NIP. ___________________________</td>
 
             <td colspan="2" style="border: 1px solid black; text-align: center; vertical-align: top; padding-top: 5px; padding-bottom: 8px;">
-                Kepala Kampung/Kelurahan/Posyandu <br><br><br><br>
+                Kepala Kampung/Kelurahan/Posyandu <br><br><br><br><br><br>
                 ______________________________<br>
                 NIP. ___________________________</td>
         </tr>
@@ -428,8 +420,8 @@
             <td></td>
             <td colspan="2" style="border: 1px solid black; text-align: center; vertical-align: top; padding-top: 5px; padding-bottom: 8px;">
                 Pegawai yang diperintahkan<br><br><br><br><br><br>
-                <strong>OKTOVIANUS SORBU, AMK</strong> <br>
-                NIP. 19801030 200012 1 005</td>
+                <strong>{{ $jadwal->pegawai->nama }}</strong> <br>
+                NIP. {{ $jadwal->pegawai->nip }}</td>
 
             <td colspan="2" style="border: 1px solid black; text-align: center; vertical-align: top; padding-top: 5px; padding-bottom: 8px;">
                 Pejabat yang memberi perintah <br>Kepala Puskesmas Pulau Mansinam<br><br><br><br><br>
