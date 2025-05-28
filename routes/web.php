@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 Route::get('/jadwal/{jadwal}/cetak', function (Jadwal $jadwal) {
     $pdf = Pdf::loadView('pdf.jadwal', compact('jadwal'));
-    return $pdf->stream('jadwal-' . $jadwal->id . '.pdf');
+    return $pdf->stream('SPPD-' . $jadwal->kegiatan->alias .' '. \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') . '.pdf');
 })->name('jadwal.cetak');
 
 Route::get('/spt/cetak/{id}', [SPTController::class, 'cetak'])->name('spt.cetak');
