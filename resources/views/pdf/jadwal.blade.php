@@ -112,10 +112,26 @@
 <body>
 
   <!-- HALAMAN 1 -->
-  <img src="{{ asset('kop.png') }}" alt="kop" style="width: 80px;" />
+
   <div class="page" id="page1">
 
-    <div>
+<div>
+    <table style="width: 100%; text-align: center; border-collapse: collapse; border: none; border-bottom: 2px solid #000;">
+    <tr>
+        <td style="width: 20%; border: none;">
+            <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 70px; display: block; margin: 0 auto;">
+        </td>
+        <td style="width: 60%; text-align: center; border: none;">
+            <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
+            <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
+            <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
+            <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
+        </td>
+        <td style="width: 20%; border: none;">
+            <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 70px; display: block; margin: 0 auto;">
+        </td>
+    </tr>
+    </table>
 
         {{-- <img src="{{ asset('logo_pemda.png') }}" alt="Logo Kiri" class="logo-left" />
       <div style="text-align: center; font-weight: bold; margin-bottom: 1px; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
@@ -124,7 +140,7 @@
       <div style="margin-top: 5px; font-size: 13px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
         <img src="{{ asset('logo_pkm.png') }}" alt="Logo Kanan" class="logo-right" />
       <hr style="border: 1px solid #000; margin: 0px 0;"> --}}
-    </div>
+</div>
 
 
     <h2 style="text-align: center; font-weight: bold; margin-bottom: 5px;">SURAT PERINTAH PERJALANAN DINAS</h2>
