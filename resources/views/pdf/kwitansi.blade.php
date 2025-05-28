@@ -13,22 +13,22 @@
 </head>
 <body>
     <div class="header">
-        <table width="100%" cellspacing="0" cellpadding="5" style="border-bottom: 2px solid black;">
-            <tr>
-                <td width="15%" valign="middle">
-                <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 80px;">
-                </td>
-                <td width="70%" valign="middle" style="line-height: 1.2;">
-                    <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
-                    <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
-                    <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
-                    <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
-                </td>
-                <td width="15%" valign="middle">
-                    <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 80px;">
-                </td>
-            </tr>
-        </table>
+    <table style="width: 100%; text-align: center; border-collapse: collapse; border: none; border-bottom: 2px solid #000;">
+    <tr>
+        <td style="width: 20%; border: none;">
+            <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 70px; display: block; margin: 0 auto;">
+        </td>
+        <td style="width: 60%; text-align: center; border: none;">
+            <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
+            <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
+            <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
+            <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
+        </td>
+        <td style="width: 20%; border: none;">
+            <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 70px; display: block; margin: 0 auto;">
+        </td>
+    </tr>
+    </table>
 
 
         <h2>KWITANSI</h2>

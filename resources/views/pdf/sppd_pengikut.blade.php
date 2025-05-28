@@ -82,11 +82,22 @@
 
     <!-- Kop Surat -->
     <div class="header">
-        <img src="{{ public_path('logo-kabupaten.png') }}" alt="Logo">
-        <strong>PEMERINTAH KABUPATEN MANOKWARI</strong><br>
-        DINAS KESEHATAN<br>
-        <strong>UPTD PUSKESMAS PULAU MANSINAM</strong><br>
-        Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat
+            <table style="width: 100%; text-align: center; border-collapse: collapse; border: none; border-bottom: 2px solid #000;">
+    <tr>
+        <td style="width: 20%; border: none;">
+            <img src="logo_pemda.png" alt="Logo Kabupaten Manokwari" style="max-height: 70px; display: block; margin: 0 auto;">
+        </td>
+        <td style="width: 60%; text-align: center; border: none;">
+            <div style="font-weight: bold; font-size: 16px;">PEMERINTAH KABUPATEN MANOKWARI</div>
+            <div style="font-weight: bold; font-size: 18px;">DINAS KESEHATAN</div>
+            <div style="font-weight: bold; font-size: 20px;">UPTD PUSKESMAS PULAU MANSINAM</div>
+            <div style="font-size: 12px; font-style: italic;">Alamat: Jl. Lingkar Selatan Pulau Mansinam, Manokwari - Papua Barat</div>
+        </td>
+        <td style="width: 20%; border: none;">
+            <img src="logo_pkm.png" alt="Logo Puskesmas" style="max-height: 70px; display: block; margin: 0 auto;">
+        </td>
+    </tr>
+    </table>
     </div>
     <div class="clear"></div>
 
