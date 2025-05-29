@@ -3,16 +3,116 @@
 <head>
     <meta charset="utf-8">
     <title>Kwitansi</title>
-    <style>
-        body { font-family: "Times New Roman", Times, serif; font-size: 12px; line-height: 1.4; }
-        table { width: 100%; }
-        th, td { border: 0px solid black; padding: 5px; text-align: center; }
-        .header, .footer { text-align: center; line-height: 1.4; }
-        .bold { font-weight: bold; }
-    </style>
+<style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      margin: 5px;
+      color: #000;
+    }
+    .page {
+      width: 660px;
+      margin: 0 auto 10px auto;
+      padding: 5px;
+      border: 0px solid #000;
+      box-sizing: border-box;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+      text-decoration: underline;
+    }
+    .header-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo kiri dan kanan di ujung */
+    padding: 10px 20px;
+    border-bottom: 1px solid #000; /* Contoh garis bawah */
+    }
+
+    .header-info .logo-left,
+    .header-info .logo-right {
+        width: 100%; /* Atur ukuran logo sesuai kebutuhan */
+        height: auto;
+    }
+
+    .header-info .header-center {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    /* Bisa ditambah style lain sesuai kebutuhan */
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    table, th, td {
+      border: 1px solid #000;
+    }
+    th, td {
+      padding: 6px 8px;
+      vertical-align: top;
+    }
+    th {
+      text-align: center;
+      font-weight: bold;
+    }
+    .no-border {
+      border: none !important;
+    }
+    .signature-section {
+      margin-top: 30px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .signature-name {
+      font-weight: bold;
+      margin-top: 60px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .nip {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .page-break {
+      page-break-after: always;
+    }
+    .section-title {
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .italic {
+      font-style: italic;
+    }
+    .dashed-line {
+      border-bottom: 1px dotted #000;
+      width: 200px;
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
+    <div class="page" id="page1">
+
+<div>
     <table style="width: 100%; text-align: center; border-collapse: collapse; border: none; border-bottom: 2px solid #000;">
     <tr>
         <td style="width: 20%; border: none;">
@@ -29,11 +129,11 @@
         </td>
     </tr>
     </table>
+</div>
 
+    <h2 style="text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 5px; margin-top: 30px;">K W I T A N S I</h2>
+    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 900/ {{ $jadwal->nomor_spt }} /KWIT/BOK/___/2025</div>
 
-        <h2>KWITANSI</h2>
-        <p>Nomor : 900 / 035 / KWIT/BOK/I/2025</p>
-    </div>
 
     <p>Sudah terima dari : Pengguna Anggaran Dinas Kesehatan Kabupaten Manokwari Atas Kegiatan Bantuan Operasional Kesehatan (BOK) Puskesmas Pulau Mansinam Tahun 2025</p>
     <p>Uang sejumlah : <strong>Rp {{ number_format($totalTransport, 0, ',', '.') }}</strong></p>
@@ -61,7 +161,7 @@
             <tr>
                 <td>1</td>
                 <td>{{ $jadwal->pegawai->nama }}<br>{{ $jadwal->pegawai->nip }}</td>
-                <td>{{ $jadwal->pegawai->pangkat }}</td>
+                <td>{{ $jadwal->pegawai->pangkat }}/{{ $jadwal->pegawai->golongan }}</td>
                 <td>{{ $jmlHari }} OH x {{ number_format($jadwal->pegawai->transport_lokal, 0, ',', '.') }}</td>
                 <td>Rp {{ number_format($jadwal->pegawai->transport_lokal * $jmlHari, 0, ',', '.') }}</td>
                 <td></td>
@@ -72,7 +172,7 @@
             <tr>
                 <td>{{ $index + 2 }}</td>
                 <td>{{ $pengikut->pegawai->nama }}<br>{{ $pengikut->pegawai->nip }}</td>
-                <td>{{ $pengikut->pegawai->pangkat }}</td>
+                <td>{{ $pengikut->pegawai->pangkat }}/{{ $pengikut->pegawai->golongan }}</td>
                 <td>{{ $jmlHari }} OH x {{ number_format($pengikut->pegawai->transport_lokal , 0, ',', '.') }}</td>
                 <td>Rp {{ number_format($pengikut->pegawai->transport_lokal * $jmlHari, 0, ',', '.') }}</td>
                 <td></td>
