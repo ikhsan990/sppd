@@ -9,9 +9,10 @@ Aplikasi SPPD ini dikhususkan untuk membantu Bendahara BOK / Admin Puskesmas unt
 <li>Pembuatan Surat Perintah Perjalanan Dinas secara cepat dan mudah</li>
 <li>SPPD, SPT dan KWITANSI bisa langsung di cetak dengan cepat dan mudah</li>
 <li>Manajemen Jadwal Kegiatan</li>
+<li>Filter kegiatan per Menu Kegiatan</li>
 
 ## Fitur yang akan dikembangkan
-<li>Rekap SPTJB BOK</li>
+<li>Rekap SPTJB BOK - Export to Excel</li>
 <li>Export excel - template Transfer Massal BNI Direct</li>
 <li>Rekap Hitung jumlah kegiatan per Pegawai/Jumlah uang yang diterima pegawai</li>
 <li>Input Jadwal Kegiatan oleh masing-masing PJ</li>
