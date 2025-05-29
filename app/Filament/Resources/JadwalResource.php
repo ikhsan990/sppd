@@ -39,13 +39,21 @@ class JadwalResource extends Resource
                             ->required()
                             ->label('Nomor Surat')
                             ->maxLength(255)
-                            ->unique(ignoreRecord: false),
+                            ->unique(ignoreRecord: true),
                         Forms\Components\DatePicker::make('tanggal_mulai')
                             ->required()
                             ->reactive(),
                         Forms\Components\DatePicker::make('tanggal_selesai')
                             ->required()
                             ->afterOrEqual('tanggal_mulai'),
+                        Select::make('jenis_kegiatan')
+                            ->options([
+                                    'Transport' => 'Transport',
+                                    'Belanja' => 'Belanja',
+                                  ])
+                            ->label('Jenis Kegiatan')
+                            ->required(),
+
                         Select::make('pegawai_id')
                             ->label('Penanggung Jawab')
                             ->relationship('pegawai', 'nama')
@@ -63,14 +71,13 @@ class JadwalResource extends Resource
                                 ->forDates($get('tanggal_mulai'), $get('tanggal_selesai'))
                                 ->ignore($record?->id); // Lewatkan ID record jika sedang update
                         },
-                    ])
-                            ,
+                    ]),
 
 
                         ])
-                    ->columns(4),
-                Forms\Components\Section::make('')
+                    ->columns(5),
 
+                Forms\Components\Section::make('')
                     ->schema([
                         Select::make('kegiatan_id')
                             ->label('Kegiatan')
@@ -97,7 +104,7 @@ class JadwalResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nomor_spt')
-                    ->label('Nomor Surat')
+                    ->label('No.')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_mulai')
@@ -115,6 +122,9 @@ class JadwalResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pegawai.nama')
                     ->label('Petugas Penanggung Jawab')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('jenis_kegiatan')
+                    ->label('Jenis Keg.')
                     ->searchable(),
             ])
             ->filters([

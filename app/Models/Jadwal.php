@@ -12,7 +12,7 @@ class Jadwal extends Model
 use HasFactory;
 
     protected $fillable = [
-        'nomor_spt', 'tanggal_mulai', 'tanggal_selesai', 'kegiatan_id', 'tujuan', 'pegawai_id'
+        'nomor_spt', 'tanggal_mulai', 'tanggal_selesai', 'kegiatan_id', 'tujuan', 'pegawai_id', 'jenis_kegiatan'
     ];
 
     public function kegiatan(): BelongsTo

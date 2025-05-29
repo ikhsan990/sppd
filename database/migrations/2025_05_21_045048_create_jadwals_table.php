@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('kegiatan_id')->constrained('kegiatans')->onDelete('cascade');
             $table->foreignId('pegawai_id')->constrained('pegawais')->onDelete('cascade'); // penanggung jawab utama
             $table->string('tujuan');
+            $table->enum('jenis_kegiatan', ['Transport', 'Belanja'])->default('Transport');
             $table->timestamps();
         });
     }
