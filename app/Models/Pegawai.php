@@ -11,7 +11,7 @@ class Pegawai extends Model
 use HasFactory;
 
     protected $fillable = [
-        'nama', 'nip', 'pangkat', 'golongan', 'jabatan', 'status', 'no_rek', 'nama_rek'
+        'nama', 'nip', 'pangkat', 'golongan', 'jabatan', 'status', 'no_rek', 'nama_rek', 'transport_lokal'
     ];
 
     public function jadwals(): HasMany
