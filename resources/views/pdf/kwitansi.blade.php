@@ -20,6 +20,13 @@
       margin: 0;
       padding: 0;
     }
+    h5 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    p {
+        font-size: 14px;
+    }
     h1 {
       font-size: 18px;
       font-weight: bold;
@@ -58,7 +65,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 10px;
-      font-size: 12px;
+      font-size: 11px;
     }
     table, th, td {
       border: 1px solid #000;
@@ -107,6 +114,8 @@
       width: 200px;
       margin: 5px 0;
     }
+
+
   </style>
 </head>
 <body>
@@ -134,16 +143,35 @@
     <h2 style="text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 5px; margin-top: 30px;">K W I T A N S I</h2>
     <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 900/ {{ $jadwal->nomor_spt }} /KWIT/BOK/___/2025</div>
 
+    <table style="border-collapse: collapse; border: none; font-size: 12px; text-wrap: wrap">
+        <tbody style="border: none">
+            <tr style="border: none">
+                <td style="border: none; width: 20%" >Sudah terima dari</td>
+                <td style="border: none">:</td>
+                <td style=" border-collapse: collapse; border: none; text-wrap: wrap; width: 80%">Pengguna Anggaran Dinas Kesehatan Kabupaten Manokwari Atas Kegiatan Bantuan Operasional Kesehatan (BOK) Puskesmas Pulau Mansinam Tahun 2025</td>
+            </tr>
+            <tr style="border-collapse: collapse; border: none">
+                <td style="border: none; width: 20%">Uang sejumlah</td>
+                <td style="border: none">:</td>
+                <td style=" border-collapse: collapse; border: none; width: 80%"><strong>Rp {{ number_format($totalTransport, 0, ',', '.') }}</strong></td>
+            </tr >
+            <tr style=" border-collapse: collapse; border: none">
+                <td style="border: none; width: 20%">Untuk pembayaran</td>
+                <td style="border: none">:</td>
+                <td style=" border-collapse: collapse; border: none; text-wrap: wrap width: 80%">Biaya Perjalanan Dinas Petugas Dalam Rangka {{ $jadwal->kegiatan->nama_kegiatan }}  An. {{ $jadwal->pegawai->nama }} dkk. pada tanggal {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} di Salobar (SPT & SPPD terlampir).</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <p>Sudah terima dari : Pengguna Anggaran Dinas Kesehatan Kabupaten Manokwari Atas Kegiatan Bantuan Operasional Kesehatan (BOK) Puskesmas Pulau Mansinam Tahun 2025</p>
-    <p>Uang sejumlah : <strong>Rp {{ number_format($totalTransport, 0, ',', '.') }}</strong></p>
-    <p>Untuk pembayaran : Biaya Perjalanan Dinas Petugas Dalam Rangka {{ $jadwal->kegiatan->nama_kegiatan }} An. {{ $jadwal->pegawai->nama }} dkk. pada tanggal {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} di Salobar (SPT & SPPD terlampir)</p>
+    <table style="font-size: 14px; text-wrap: wrap; width: 70%; font-weight: bold; font-style: italic; border:#ffffff solid 0px; ">
+        <tr style="border:#ffffff solid 01px; background-color:#d6d6d6">
+            <td style="width: 15%; border:#ffffff solid 0px;" >Terbilang :</td>
+            <td style="width: 55%; border:#ffffff solid 0px; ">{{ $terbilang }} </td>
+        </tr>
+    </table>
 
-    <hr>
 
-    <p><em>Terbilang : {{ $terbilang }} </em></p>
-
-    <h4>RINCIAN BIAYA PERJALANAN DINAS</h4>
+    <h5>RINCIAN BIAYA PERJALANAN DINAS</h5>
 
     <table>
         <thead>
@@ -181,26 +209,27 @@
 
             {{-- Total --}}
             <tr>
-                <td colspan="4" class="bold">Jumlah</td>
-                <td class="bold">Rp {{ number_format($totalTransport, 0, ',', '.') }}</td>
+                <td colspan="4" style="font-weight: bold; text-align: center">JUMLAH</td>
+                <td style="font-weight: bold">Rp {{ number_format($totalTransport, 0, ',', '.') }}</td>
                 <td></td>
             </tr>
         </tbody>
     </table>
 
-    <br><br>
 
-    <div style="width: 50%; float: left; text-align: center;">
-        <p>Mengetahui :<br>Kepala Puskesmas Pulau Mansinam</p>
-        <br><br><br>
-        <p><strong>OKTOVIANUS SORBU, AMK</strong><br>NIP. 19801030 200012 1 005</p>
-    </div>
+<table style="font-size: 12px; text-wrap: wrap; width: 100%; border:#ffffff solid 0px; ">
+    <tr style="border:#ffffff solid 0px;">
+        <td style="width: 30%; border:#ffffff solid 0px;"><br>Mengetahui,</td>
+        <td style="width: 30%; border:#ffffff solid 0px;"></td>
+        <td style="width: 30%; border:#ffffff solid 0px;">Manokwari, <br>Lunas Bayar,</td>
+    </tr>
+    <tr style="width: 30%; border:#ffffff solid 0px;">
+        <td style="width: 30%; border:#ffffff solid 0px;">Kepala Puskesmas Pulau Mansinam <br><br><br><br><br><br><b>OKTOVIANUS SORBU, AMK</b><br>NIP. 19801030 200012 1 005</td>
+        <td style="width: 30%; border:#ffffff solid 0px;"></td>
+        <td style="width: 30%; border:#ffffff solid 0px;">Bendahara BOK <br><br><br><br><br><br><b>MUH. IKHSAN, AMK</b><br>NIP. 19900301 202106 1 001</td>
+    </tr>
 
-    <div style="width: 50%; float: right; text-align: center;">
-        <p>Manokwari,<br>Lunas dibayar,<br>Bendahara BOK</p>
-        <br><br><br>
-        <p><strong>MUH. IKHSAN, AMK</strong><br>NIP. 19900301 202106 1 001</p>
-    </div>
+</table>
 
 </body>
 </html>
