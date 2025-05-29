@@ -2,16 +2,21 @@
 
 Aplikasi SPPD Puskesmas adalah sebuah sistem yang dirancang untuk memudahkan pengelolaan Surat Perintah Perjalanan Dinas (SPPD) di lingkungan Puskesmas Khusus dalam pengelolaan BOK. Aplikasi ini membantu dalam pembuatan, pengelolaan, dan pelaporan SPPD secara digital sehingga proses administrasi menjadi lebih efisien dan terorganisir.
 
+Aplikasi SPPD ini dikhususkan untuk membantu Bendahara BOK / Admin Puskesmas untuk memproses dokumen-dokumen pertanggung jawaban BOK. Fitur-fitur lainnya akan secara bertahap di kembangkan
+
 ## Fitur Utama
 
 <li>Pembuatan Surat Perintah Perjalanan Dinas secara cepat dan mudah</li>
-<li>Manajemen data pegawai dan tujuan perjalanan</li>
-<li>Pelacakan status perjalanan dinas</li>
-<li>Laporan perjalanan dinas yang dapat diunduh dan dicetak</li>
-<li>Notifikasi pengingat untuk perjalanan yang akan datang</li>
-<li>Sistem otorisasi dan hak akses pengguna</li>
+<li>SPPD, SPT dan KWITANSI bisa langsung di cetak dengan cepat dan mudah</li>
+<li>Manajemen Jadwal Kegiatan</li>
 
-## Fitur Utama
+## Fitur yang akan dikembangkan
+<li>Rekap SPTJB BOK</li>
+<li>Export excel - template Transfer Massal BNI Direct</li>
+<li>Rekap Hitung jumlah kegiatan per Pegawai/Jumlah uang yang diterima pegawai</li>
+<li>Input Jadwal Kegiatan oleh masing-masing PJ</li>
+
+## Instalasi
 - run `` git clone https://github.com/ikhsan990/sppd.git ``
 - run ``composer install `` 
 - run `` npm install ``
