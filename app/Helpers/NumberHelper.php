@@ -13,11 +13,11 @@ if (!function_exists('terbilang')) {
         } elseif ($angka < 100) {
             $hasil = terbilang(intval($angka / 10)) . " Puluh " . terbilang($angka % 10);
         } elseif ($angka < 200) {
-            $hasil = " Seratus" . terbilang($angka - 100);
+            $hasil = " Seratus " . terbilang($angka - 100);
         } elseif ($angka < 1000) {
             $hasil = terbilang(intval($angka / 100)) . " Ratus " . terbilang($angka % 100);
         } elseif ($angka < 2000) {
-            $hasil = " Seribu" . terbilang($angka - 1000);
+            $hasil = " Seribu " . terbilang($angka - 1000);
         } elseif ($angka < 1000000) {
             $hasil = terbilang(intval($angka / 1000)) . " Ribu " . terbilang($angka % 1000);
         } elseif ($angka < 1000000000) {
