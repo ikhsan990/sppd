@@ -17,11 +17,11 @@ public function cetakPengikutAsn(Jadwal $jadwal, Request $request)
     if ($pengikut->pegawai->status !== 'asn') {
         abort(403, 'Hanya pengikut ASN yang bisa dicetak.');
     }
-
+    $customPaper = [0, 0, 595.35, 935.55];
     $pdf = Pdf::loadView('pdf.sppd_pengikut', [
         'jadwal' => $jadwal,
         'pengikut' => $pengikut,
-    ]);
+    ])->setPaper($customPaper, 'portrait');
 
     return $pdf->stream('sppd-pengikut-' . $pengikut->pegawai->nama . '.pdf');
 }

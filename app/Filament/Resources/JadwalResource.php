@@ -99,14 +99,19 @@ class JadwalResource extends Resource
                 Tables\Columns\TextColumn::make('tanggal_mulai')
                     ->date()
                     ->label('Tanggal')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('tanggal_selesai')
                     ->date()
                     ->hidden(),
-                Tables\Columns\TextColumn::make('kegiatan.nama_kegiatan'),
-                Tables\Columns\TextColumn::make('tujuan'),
+                Tables\Columns\TextColumn::make('kegiatan.nama_kegiatan')
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('tujuan')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('pegawai.nama')
-                    ->label('Petugas'),
+                    ->label('Petugas')
+                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('kegiatan')
