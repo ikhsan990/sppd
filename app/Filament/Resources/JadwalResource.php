@@ -37,7 +37,9 @@ class JadwalResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('nomor_spt')
                             ->required()
-                            ->maxLength(255),
+                            ->label('Nomor Surat')
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: false),
                         Forms\Components\DatePicker::make('tanggal_mulai')
                             ->required()
                             ->reactive(),
@@ -95,7 +97,9 @@ class JadwalResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('nomor_spt')
-                    ->searchable(),
+                    ->label('Nomor Surat')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_mulai')
                     ->date()
                     ->label('Tanggal')

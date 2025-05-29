@@ -11,7 +11,7 @@ use App\Http\Controllers\KegiatanController;
 
 
 Route::get('/', function () {
-    return redirect('welcome');
+    return view ('welcome');
 });
 Route::get('/jadwal/{jadwal}/cetak', function (Jadwal $jadwal) {
     $customPaper = [0, 0, 595.35, 935.55];
