@@ -105,12 +105,12 @@ class JadwalResource extends Resource
                     ->date()
                     ->hidden(),
                 Tables\Columns\TextColumn::make('kegiatan.nama_kegiatan')
-                    ->searchable(),
-
+                    ->searchable()
+                    ->wrap(),
                 Tables\Columns\TextColumn::make('tujuan')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pegawai.nama')
-                    ->label('Petugas')
+                    ->label('Petugas Penanggung Jawab')
                     ->searchable(),
             ])
             ->filters([
