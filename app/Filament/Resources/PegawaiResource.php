@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\Pegawai;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
 use App\Filament\Resources\PegawaiResource\Pages;
 use App\Filament\Resources\PegawaiResource\RelationManagers;
-use App\Models\Pegawai;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 
 class PegawaiResource extends Resource
 {
@@ -113,4 +114,8 @@ class PegawaiResource extends Resource
             'edit' => Pages\EditPegawai::route('/{record}/edit'),
         ];
     }
+public static function shouldRegisterNavigation(): bool
+{
+    return Filament::auth()->user()?->can('view_any_pegawai');
+}
 }

@@ -2,7 +2,7 @@
 <html lang="ID">
 <head>
     <meta charset="utf-8">
-    <title>Kwitansi</title>
+    <title>Kwitansi {{ $jadwal->kegiatan->alias }}</title>
 <style>
     body {
       font-family: "Times New Roman", Times, serif;
@@ -25,7 +25,7 @@
         margin-bottom: 10px;
     }
     p {
-        font-size: 14px;
+        font-size: 15px;
     }
     h1 {
       font-size: 18px;
@@ -141,7 +141,7 @@
 </div>
 
     <h2 style="text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 5px; margin-top: 30px;">K W I T A N S I</h2>
-    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 900/ {{ $jadwal->nomor_spt }} /KWIT/BOK/___/2025</div>
+    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 900/ {{ $jadwal->nomor_spt }} /KWIT/BOK/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/2025</div>
 
     <table style="border-collapse: collapse; border: none; font-size: 12px; text-wrap: wrap">
         <tbody style="border: none">

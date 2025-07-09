@@ -11,12 +11,17 @@ use Filament\Forms\Get;
 use App\Models\Kegiatan;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Facades\Filament;
+use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
 use App\Rules\PegawaiJadwalOverlap;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Forms\Components\DatePicker;
 use App\Filament\Resources\JadwalResource\Pages;
 use App\Filament\Resources\JadwalResource\RelationManagers;
 
@@ -28,8 +33,10 @@ class JadwalResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
     protected static ?string $navigationLabel = 'JADWAL';
 
+
     public static function form(Form $form): Form
     {
+
         return $form
             ->schema([
                 Forms\Components\Section::make('Rincian Jadwal')
@@ -110,11 +117,14 @@ class JadwalResource extends Resource
                 Tables\Columns\TextColumn::make('tanggal_mulai')
                     ->date()
                     ->label('Tanggal')
+                    ->formatStateUsing(fn ($state) => Carbon::parse($state)->translatedFormat('d F Y'))
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tanggal_selesai')
                     ->date()
-                    ->hidden(),
+                    ->hidden()
+                    ->formatStateUsing(fn ($state) => Carbon::parse($state)->translatedFormat('d F Y'))
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('kegiatan.nama_kegiatan')
                     ->searchable()
                     ->wrap(),
@@ -129,8 +139,33 @@ class JadwalResource extends Resource
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('kegiatan')
-                    ->relationship('kegiatan', 'nama_kegiatan'),
+                    ->relationship('kegiatan', 'nama_kegiatan')
+                    ->searchable()
+                    ->preload()
+                    ->label('Kegiatan')
+                    ->indicator('Kegiatan')->columnSpan(3),
+
+
+            Filter::make('tanggal_mulai')
+            ->form([
+                DatePicker::make('tanggal_mulai'),
+                DatePicker::make('tanggal_selesai'),
             ])
+            // ...
+            ->indicateUsing(function (array $data): array {
+                $indicators = [];
+
+                if ($data['tanggal_mulai'] ?? null) {
+                    $indicators['tanggal_mulai'] = 'Tanggal Mulai ' . Carbon::parse($data['tanggal_mulai'])->toFormattedDateString();
+                }
+
+                if ($data['tanggal_selesai'] ?? null) {
+                    $indicators['tanggal_selesai'] = 'Tanggal Selesai ' . Carbon::parse($data['tanggal_selesai'])->toFormattedDateString();
+                }
+
+                return $indicators;
+            })->columnSpan(2)->columns(2)
+            ], layout: FiltersLayout::AboveContent )
 
             ->actions([
                 ActionGroup::make([
@@ -182,4 +217,16 @@ class JadwalResource extends Resource
 
         ];
     }
+public static function canCreate(): bool
+{
+    return Filament::auth()->user()?->can('create_jadwal');
+}
+public static function canEdit($record): bool
+{
+    return Filament::auth()->user()?->can('update_jadwal');
+}
+public static function canDelete($record): bool
+{
+    return Filament::auth()->user()?->can('delete_jadwal');
+}
 }

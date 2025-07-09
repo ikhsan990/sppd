@@ -136,7 +136,7 @@
 
 
     <h2 style="text-align: center; font-weight: bold; margin-bottom: 5px; margin-top: 30px;">SURAT PERINTAH PERJALANAN DINAS</h2>
-    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 094/ {{ $jadwal->nomor_spt }} /SPPD/BOK/___/2025</div>
+    <div style="text-align: center; font-weight: normal; margin-bottom: 10px; font-size: 14px;">NOMOR : 094/ {{ $jadwal->nomor_spt }} /SPPD/BOK/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/2025</div>
     <br>
     <table>
       <tbody>
@@ -301,7 +301,7 @@
                 Berangkat dari <br> Ke <br> Pada tanggal <br> NO. SPPD
             </td>
             <td style="border: 1px solid black; border-left: none; vertical-align: top; padding: 4px 8px;">
-                : Puskesmas Pulau Mansinam <br> : {{ $jadwal->tujuan }} <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} <br> : 094/{{ $jadwal->nomor_spt }}/SPPD/BOK/___/2025
+                : Puskesmas Pulau Mansinam <br> : {{ $jadwal->tujuan }} <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') }} <br> : 094/{{ $jadwal->nomor_spt }}/SPPD/BOK/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/2025
             </td>
         </tr>
         <tr>
@@ -398,7 +398,7 @@
                 Telah tiba Kembali <br> di <br> Pada tanggal <br>
             </td>
             <td style="border: 1px solid black; border-left: none; vertical-align: top; padding: 4px 8px;">
-                 <br> : Puskesmas Pulau Mansinam <br> : 12 Mei 2025
+                 <br> : Puskesmas <br> : {{ \Carbon\Carbon::parse($jadwal->tanggal_selesai)->locale('id')->translatedFormat('d F Y') }}
             </td>
             <td colspan="2" style="border: 1px solid black; border-right: none; vertical-align: top; padding: 4px 8px;">
                 Telah  diperiksa  bahwa  Perjalanan  Dinas tersebut <br>di atas benar - benat dilakukan  atas  perintah dengan <br>semata - mata untuk  kepentingan  Jabatan dalam <br>waktu  yang  sesingkat - singkatnya.

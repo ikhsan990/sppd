@@ -9,12 +9,15 @@ use App\Http\Controllers\SppdController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KwitansiController;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
+
 
 
 
 Route::get('/', function () {
-    return view ('welcome');
+    return redirect()->route('filament.admin.auth.login');
 });
+
 Route::get('/jadwal/{jadwal}/cetak', function (Jadwal $jadwal) {
     $customPaper = [0, 0, 595.35, 935.55];
     $pdf = Pdf::loadView('pdf.jadwal', compact('jadwal'))->setPaper($customPaper, 'portrait');

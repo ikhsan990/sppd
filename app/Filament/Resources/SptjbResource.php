@@ -2,15 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SptjbResource\Pages;
 use App\Models\Jadwal;
-use Filament\Resources\Resource;
 use Filament\Tables\Table;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
+use Filament\Facades\Filament;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\URL;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Resources\SptjbResource\Pages;
+
 
 class SptjbResource extends Resource
 {
@@ -62,5 +64,9 @@ class SptjbResource extends Resource
         return [
             'index' => Pages\ListSptjbs::route('/'),
         ];
+    }
+            public static function shouldRegisterNavigation(): bool
+    {
+        return Filament::auth()->user()?->can('view_any_sptjb');
     }
 }

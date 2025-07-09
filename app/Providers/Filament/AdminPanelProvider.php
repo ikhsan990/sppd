@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use Filament\Pages;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
@@ -20,12 +21,14 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-
+use App\Filament\Pages\Auth\Login;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+
+
             ->topNavigation()
             ->favicon(asset('images/favicon.ico'))
             ->default()
@@ -57,6 +60,9 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugins([
+                FilamentShieldPlugin::make(),
+            ])
 
             ->navigationItems([
                 NavigationItem::make('Dashboard')
@@ -70,7 +76,12 @@ class AdminPanelProvider extends PanelProvider
 
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+
+            ->login(Login::class)
+
+
+            ->brandName('SPPD Puskesmas');
 
     }
 }

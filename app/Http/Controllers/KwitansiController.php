@@ -35,6 +35,6 @@ public function cetakPdf($id)
         'jmlHari' => $jmlHari,
     ]) ->setPaper($customPaper, 'portrait');
 
-    return $pdf->stream('kwitansi.pdf');
+    return $pdf->stream($jadwal->nomor_spt . '. Kwitansi - ' . $jadwal->kegiatan->alias . ' - ' . \Carbon\Carbon::parse($jadwal->tanggal_mulai)->locale('id')->translatedFormat('d F Y') . '.pdf');
 }
 }

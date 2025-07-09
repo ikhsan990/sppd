@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\Pengikut;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Actions\Action;
+use Filament\Resources\Resource;
 use App\Filament\Resources\PengikutResource\Pages;
 use App\Filament\Resources\PengikutResource\RelationManagers;
-use App\Models\Pengikut;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 
 class PengikutResource extends Resource
 {
@@ -20,6 +21,7 @@ class PengikutResource extends Resource
     protected static ?string $modelLabel = 'Pengikut';
     protected static ?string $pluralModelLabel = 'Daftar Pengikut';
     protected static bool $shouldRegisterNavigation = false;
+
 
     public static function form(Form $form): Form
     {

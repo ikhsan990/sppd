@@ -2,15 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\Kegiatan;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use App\Filament\Resources\KegiatanResource\Pages;
 use App\Filament\Resources\KegiatanResource\RelationManagers;
-use App\Models\Kegiatan;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Forms\Components\Select;
 
 
 
@@ -110,4 +111,10 @@ class KegiatanResource extends Resource
 
         ];
     }
+
+public static function shouldRegisterNavigation(): bool
+{
+    return Filament::auth()->user()?->can('view_any_kegiatan');
+}
+
 }
