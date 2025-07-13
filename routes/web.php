@@ -10,7 +10,7 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\KwitansiController;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Http\Controllers\BelanjaController;
 
 
 
@@ -40,3 +40,7 @@ Route::get('/filament/sptjb/export-pdf', function () {
     $pdf = Pdf::loadView('exports.sptjb', compact('jadwals'));
     return $pdf->download('rekap_sptjb_' . now()->format('Ymd_His') . '.pdf');
 })->name('filament.resources.sptjb.export-pdf')->middleware(['auth', 'signed']);
+
+// Route::get('/cetak-kwitansi/{belanja}', [BelanjaController::class, 'cetakpdf'])->name('cetak.kwitansi');
+
+Route::get('/belanja/{id}/cetak', [BelanjaController::class, 'cetak'])->name('belanja.cetak');

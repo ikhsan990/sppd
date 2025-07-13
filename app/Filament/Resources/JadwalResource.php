@@ -77,8 +77,8 @@ class JadwalResource extends Resource
                             return (new PegawaiJadwalOverlap())
                                 ->forDates($get('tanggal_mulai'), $get('tanggal_selesai'))
                                 ->ignore($record?->id); // Lewatkan ID record jika sedang update
-                        },
-                    ]),
+                                        },
+                                    ]),
 
 
                         ])
@@ -165,7 +165,7 @@ class JadwalResource extends Resource
 
                 return $indicators;
             })->columnSpan(2)->columns(2)
-            ], layout: FiltersLayout::AboveContent )
+            ], )
 
             ->actions([
                 ActionGroup::make([

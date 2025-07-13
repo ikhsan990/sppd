@@ -19,9 +19,10 @@ class SptjbResource extends Resource
     protected static ?string $model = Jadwal::class;
     protected static ?string $navigationLabel = 'SPTJB';
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
-    protected static ?string $navigationGroup = '';
+    protected static ?string $navigationGroup = 'MASTER';
     protected static ?int $navigationSort = 5;
     protected static bool $shouldSkipAuthorization = true;
+
 
 
     public static function table(Table $table): Table

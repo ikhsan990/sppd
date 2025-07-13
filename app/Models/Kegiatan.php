@@ -18,4 +18,8 @@ class Kegiatan extends Model
     {
         return $this->hasMany(Jadwal::class);
     }
+    public function belanjas()
+    {
+        return $this->belongsToMany(Belanja::class, 'belanja_kegiatan', 'kegiatan_id', 'belanja_id');
+    }
 }

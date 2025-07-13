@@ -30,5 +30,13 @@ use HasFactory;
         return $this->hasMany(Pengikut::class);
     }
 
+    public function laporans()
+    {
+        return $this->hasMany(Laporan::class);
+    }
 
+    protected $casts = [
+    'tanggal_mulai' => 'datetime',
+    'tanggal_selesai' => 'datetime', // jika ada
+];
 }

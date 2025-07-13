@@ -27,7 +27,7 @@ public function cetakPdf($id)
     }
 
     $terbilang = ucfirst(terbilang($totalTransport)) . " Rupiah";
-     $customPaper = [0, 0, 595.35, 935.55];
+    $customPaper = [0, 0, 595.35, 935.55];
     $pdf = Pdf::loadView('pdf.kwitansi', [
         'jadwal' => $jadwal,
         'totalTransport' => $totalTransport,

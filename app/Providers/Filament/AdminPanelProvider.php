@@ -78,8 +78,6 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
 
-            ->login(Login::class)
-
 
             ->brandName('SPPD Puskesmas');
 
